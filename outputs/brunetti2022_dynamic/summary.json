@@ -1,0 +1,35 @@
+{
+  "model": "Brunetti et al. 2022 reduced two-level dynamic model",
+  "doi": "10.3389/fphy.2022.854393",
+  "voltage_step_v": 2.4,
+  "parameters": {
+    "trap_energy_ev": 0.0,
+    "mobile_energy_ev": 0.35,
+    "dos_ratio": 0.0025,
+    "poole_gamma_c_m": 3.36e-28,
+    "relative_permittivity": 15.0,
+    "mobility_m2_v_s": 0.00059,
+    "equilibrium_density_m3": 6.8e+25,
+    "temperature_relaxation_s": 1.5e-13,
+    "population_relaxation_s": 6e-10,
+    "length_m": 5.3e-08,
+    "area_m2": 5e-15,
+    "lattice_temperature_k": 298.0,
+    "energy_coupling_efficiency": 0.6
+  },
+  "final_carrier_temperature_k": 694.5614346775658,
+  "final_mobile_fraction": 0.4848002124846677,
+  "final_current_a": 0.000695347843355271,
+  "half_current_delay_s": 4.580322401334075e-09,
+  "triangle_sweep": {
+    "peak_source_voltage_v": 3.0,
+    "half_period_s": 5e-08,
+    "series_resistance_ohm": 50.0,
+    "peak_current_a": 0.0017385375530143627,
+    "threshold_voltage_v": 2.500833611203735,
+    "threshold_current_a": 0.00035514229123223784,
+    "holding_voltage_v": 1.5805268422807606,
+    "holding_current_a": 7.453734650828635e-05
+  },
+  "scope_note": "Zero-dimensional reproduction of the paper's two-level dynamics; the published full model additionally resolves space and external circuit."
+}
