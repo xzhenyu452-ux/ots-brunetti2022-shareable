@@ -1,0 +1,29 @@
+{
+  "definition": "activation_energy_ev = mobile_energy_ev - trap_energy_ev",
+  "fixed_series_resistance_ohm": 50.0,
+  "peak_source_voltage_v": 3.0,
+  "half_period_s": 5e-08,
+  "curves": [
+    {
+      "activation_energy_ev": 0.3,
+      "vth_v": 1.8076709282934964,
+      "vhold_v": 1.3040578098943865,
+      "ith_a": 0.0003673169565496447,
+      "ihold_a": 0.00010943533646391863
+    },
+    {
+      "activation_energy_ev": 0.35,
+      "vth_v": 2.501389660922735,
+      "vhold_v": 1.5808782657031688,
+      "ith_a": 0.00036295845537736855,
+      "ihold_a": 7.514946874545655e-05
+    },
+    {
+      "activation_energy_ev": 0.375,
+      "vth_v": 2.894941634241245,
+      "vhold_v": 1.704280155642024,
+      "ith_a": 0.0003681765701903758,
+      "ihold_a": 6.512057395131326e-05
+    }
+  ]
+}

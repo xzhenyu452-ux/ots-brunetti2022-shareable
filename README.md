@@ -17,8 +17,10 @@ python -m pytest -q
 - [MODEL.md](MODEL.md)：公式、参数、来源、假设和拟合注意事项。
 - [src/ots_brunetti2022/brunetti2022.py](src/ots_brunetti2022/brunetti2022.py)：模型实现。
 - [scripts/reproduce_brunetti2022.py](scripts/reproduce_brunetti2022.py)：一键复现脚本。
+- [scripts/compare_activation_energy.py](scripts/compare_activation_energy.py)：固定其他参数、比较不同激活能的 I–V 曲线。
 - [tests/test_brunetti2022.py](tests/test_brunetti2022.py)：自动化检查。
 - [outputs/brunetti2022_dynamic/triangle_iv_Rs50ohm.png](outputs/brunetti2022_dynamic/triangle_iv_Rs50ohm.png)：示例电压扫描曲线。
+- [outputs/brunetti2022_dynamic/activation_energy_comparison.png](outputs/brunetti2022_dynamic/activation_energy_comparison.png)：激活能对比图。
 
 ## 模型边界
 
