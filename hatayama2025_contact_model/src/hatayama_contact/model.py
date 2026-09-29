@@ -14,6 +14,7 @@ from dataclasses import dataclass
 import numpy as np
 
 K_B_EV = 8.617333262e-5
+Q_E = 1.602176634e-19
 
 
 @dataclass(frozen=True)
@@ -46,8 +47,10 @@ class ModelParameters:
     trap_spacing_nm: float = 18.0
     impact_prefactor_m_inv: float = 1.0e9
     mean_free_path_nm: float = 15.0
-    contact_coupling_gain: float = 6.2
-    contact_coupling_floor_v: float = 0.130
+    contact_supply_current_a: float = 2.0e-5
+    injection_ideality: float = 4.0
+    forward_ideality: float = 2.0
+    schottky_field_enhancement: float = 2.5
     onset_multiplication: float = 1.01
     threshold_multiplication: float = 1.50
     maximum_multiplication: float = 1.0e6
@@ -105,41 +108,90 @@ class HatayamaContactModel:
     def switchable(self) -> bool:
         return self.effective_built_in_potential_v >= self.params.minimum_switching_barrier_v
 
-    @property
-    def effective_contact_penalty_v(self) -> float:
-        """Calibrated shift of impact-ionization onset, not a literal voltage drop."""
-        p = self.params
-        excess_barrier = max(
-            self.effective_built_in_potential_v - p.contact_coupling_floor_v,
-            0.0,
-        )
-        return p.contact_coupling_gain * excess_barrier
-
-    def physical_voltage_partition(self, voltage_v: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
-        """Simple band-flattening partition used only for interpretation plots."""
-        voltage = np.asarray(voltage_v, dtype=float)
-        contact_drop = np.minimum(np.maximum(voltage, 0.0), self.effective_built_in_potential_v)
-        return contact_drop, np.maximum(voltage - contact_drop, 0.0)
-
     def poole_frenkel_current(self, voltage_v: np.ndarray) -> np.ndarray:
+        """Bulk PF current magnitude, written to vanish at zero bias."""
         p = self.params
         voltage = np.maximum(np.asarray(voltage_v, dtype=float), 0.0)
-        barrier_ev = p.trap_depth_ev - voltage * p.trap_spacing_nm / (2.0 * p.thickness_nm)
-        exponent = -barrier_ev / (K_B_EV * p.temperature_k)
-        return p.pf_prefactor_a * np.exp(np.clip(exponent, -80.0, 40.0))
+        thermal_voltage = K_B_EV * p.temperature_k
+        zero_field_scale = p.pf_prefactor_a * np.exp(-p.trap_depth_ev / thermal_voltage)
+        field_exponent = voltage * p.trap_spacing_nm / (
+            2.0 * p.thickness_nm * thermal_voltage
+        )
+        return zero_field_scale * np.expm1(np.clip(field_exponent, 0.0, 40.0))
 
-    def impact_multiplication(self, voltage_v: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    @property
+    def contact_saturation_current_a(self) -> float:
+        """Common supply current reduced by the measured interface barrier."""
         p = self.params
-        voltage = np.maximum(np.asarray(voltage_v, dtype=float), 0.0)
-        drive_voltage = np.maximum(voltage - self.effective_contact_penalty_v, 1.0e-12)
-        field_v_m = drive_voltage / (p.thickness_nm * 1.0e-9)
+        thermal_voltage = K_B_EV * p.temperature_k
+        return p.contact_supply_current_a * np.exp(
+            -self.effective_built_in_potential_v
+            / (p.injection_ideality * thermal_voltage)
+        )
+
+    def contact_voltage_drops(self, current_a: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+        """Forward and reverse Schottky-contact drops at a common current.
+
+        The reverse branch follows image-force barrier lowering.  The field
+        enhancement represents local interface-field concentration and is one
+        global calibration parameter, not an electrode-specific multiplier.
+        """
+        p = self.params
+        current = np.maximum(np.asarray(current_a, dtype=float), 0.0)
+        thermal_voltage = K_B_EV * p.temperature_k
+        log_ratio = np.log1p(current / self.contact_saturation_current_a)
+        forward_drop = p.forward_ideality * thermal_voltage * log_ratio
+
+        barrier_lowering_v = thermal_voltage * log_ratio
+        permittivity_f_m = p.permittivity_f_cm * 100.0
+        depletion_width_m = min(
+            self.contact.depletion_width_nm,
+            p.thickness_nm / 2.0,
+        ) * 1.0e-9
+        reverse_drop = (
+            depletion_width_m
+            * 4.0
+            * np.pi
+            * permittivity_f_m
+            / Q_E
+            * (barrier_lowering_v / p.schottky_field_enhancement) ** 2
+        )
+        return forward_drop, reverse_drop
+
+    def impact_multiplication(self, bulk_voltage_v: np.ndarray) -> np.ndarray:
+        p = self.params
+        voltage = np.maximum(np.asarray(bulk_voltage_v, dtype=float), 1.0e-12)
+        field_v_m = voltage / (p.thickness_nm * 1.0e-9)
         energy_gain_ev = p.mean_free_path_nm * 1.0e-9 * field_v_m
         alpha_m_inv = p.impact_prefactor_m_inv * np.exp(
             np.clip(-p.ionization_energy_ev / energy_gain_ev, -100.0, 0.0)
         )
         log_m = alpha_m_inv * p.thickness_nm * 1.0e-9
-        multiplication = np.exp(np.clip(log_m, 0.0, np.log(p.maximum_multiplication)))
-        return multiplication, drive_voltage
+        return np.exp(np.clip(log_m, 0.0, np.log(p.maximum_multiplication)))
+
+    def _self_consistent_branch(
+        self,
+        source_voltage_v: np.ndarray,
+        *,
+        include_impact: bool,
+    ) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+        """Solve current continuity by parameterizing the shared bulk voltage."""
+        source = np.asarray(source_voltage_v, dtype=float)
+        internal_bulk_voltage = np.linspace(0.0, max(float(source.max()), 3.5), 12001)
+        current = self.poole_frenkel_current(internal_bulk_voltage)
+        multiplication = self.impact_multiplication(internal_bulk_voltage)
+        if include_impact:
+            current = current * multiplication
+        forward_drop, reverse_drop = self.contact_voltage_drops(current)
+        internal_source_voltage = internal_bulk_voltage + forward_drop + reverse_drop
+
+        # The component laws are monotonic; interpolation is the numerical
+        # solution of Vsrc = Vf(I) + Vbulk(I) + Vr(I).
+        solved_current = np.interp(source, internal_source_voltage, current)
+        solved_bulk = np.interp(source, internal_source_voltage, internal_bulk_voltage)
+        solved_contact = np.interp(source, internal_source_voltage, forward_drop + reverse_drop)
+        solved_multiplication = np.interp(source, internal_source_voltage, multiplication)
+        return solved_current, solved_bulk, solved_contact, solved_multiplication
 
     @staticmethod
     def _first_crossing(voltage: np.ndarray, values: np.ndarray, target: float) -> float | None:
@@ -158,10 +210,10 @@ class HatayamaContactModel:
     def sweep(self, stop_voltage_v: float = 3.0, points: int = 1201) -> SweepResult:
         p = self.params
         voltage = np.linspace(0.0, stop_voltage_v, points)
-        pf_current = self.poole_frenkel_current(voltage)
-        multiplication, drive_voltage = self.impact_multiplication(voltage)
-        multiplied_current = pf_current * multiplication
-        contact_drop, bulk_voltage = self.physical_voltage_partition(voltage)
+        pf_current, _, _, _ = self._self_consistent_branch(voltage, include_impact=False)
+        multiplied_current, bulk_voltage, contact_drop, multiplication = (
+            self._self_consistent_branch(voltage, include_impact=True)
+        )
 
         if self.switchable:
             von = self._first_crossing(voltage, multiplication, p.onset_multiplication)
@@ -192,7 +244,7 @@ class HatayamaContactModel:
             multiplication=multiplication,
             physical_contact_drop_v=contact_drop,
             bulk_voltage_v=bulk_voltage,
-            ionization_drive_voltage_v=drive_voltage,
+            ionization_drive_voltage_v=bulk_voltage,
             onset_voltage_v=von,
             threshold_voltage_v=vth,
             hold_voltage_v=vh,

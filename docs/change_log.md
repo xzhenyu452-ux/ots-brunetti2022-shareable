@@ -5,6 +5,14 @@ Last updated: 2026-09-09 22:00
 Append new entries at the top or bottom, but keep the format consistent.
 
 
+## 2026-09-29 - completed - Make contact and bulk transport self-consistent
+
+- Summary: Replaced the threshold-only empirical contact shift with common forward/reverse Schottky equations and current-continuous voltage partitioning across both contacts and the PF bulk.
+- Level: L2
+- Files changed: `hatayama2025_contact_model/src`, reproduction outputs, tests, and model documentation.
+- Validation: outputs regenerated; 6 contact-model tests and 2 root tests passed.
+
+
 ## 2026-09-29 - completed - Add Hatayama 2025 contact-aware OTS reproduction
 
 - Summary: Added a standalone quasi-static GeTe6/Hf-W-Pt model combining contact band bending, Poole-Frenkel transport, lucky-drift impact ionization, engineering ON-state compliance, and depletion-overlap thickness effects.

@@ -10,8 +10,10 @@
     "trap_spacing_nm": 18.0,
     "impact_prefactor_m_inv": 1000000000.0,
     "mean_free_path_nm": 15.0,
-    "contact_coupling_gain": 6.2,
-    "contact_coupling_floor_v": 0.13,
+    "contact_supply_current_a": 2e-05,
+    "injection_ideality": 4.0,
+    "forward_ideality": 2.0,
+    "schottky_field_enhancement": 2.5,
     "onset_multiplication": 1.01,
     "threshold_multiplication": 1.5,
     "maximum_multiplication": 1000000.0,
@@ -45,24 +47,27 @@
   },
   "electrode_results_100nm": {
     "Hf": {
-      "onset_voltage_v": 1.629657471964105,
-      "threshold_voltage_v": 2.0922641543044005,
+      "onset_voltage_v": 0.9246964080312037,
+      "threshold_voltage_v": 2.1259980297783385,
       "hold_voltage_v": 0.7575999999999999,
       "effective_built_in_potential_v": 0.282,
+      "contact_saturation_current_a": 1.308224029760008e-06,
       "switchable": true
     },
     "W": {
-      "onset_voltage_v": 1.2328572946994691,
-      "threshold_voltage_v": 1.6954631221486427,
+      "onset_voltage_v": 0.8196292189547455,
+      "threshold_voltage_v": 1.8281002045118668,
       "hold_voltage_v": 0.6424000000000001,
       "effective_built_in_potential_v": 0.218,
+      "contact_saturation_current_a": 2.4292392636281505e-06,
       "switchable": true
     },
     "Pt": {
-      "onset_voltage_v": 0.7802582893876114,
-      "threshold_voltage_v": 1.2428635385764488,
+      "onset_voltage_v": 0.745666822491055,
+      "threshold_voltage_v": 1.517703806840959,
       "hold_voltage_v": 0.511,
       "effective_built_in_potential_v": 0.145,
+      "contact_saturation_current_a": 4.921038902098446e-06,
       "switchable": true
     }
   },
@@ -72,24 +77,24 @@
         "switchable": true,
         "overlap_fraction": 0.0,
         "effective_built_in_potential_v": 0.282,
-        "onset_voltage_v": 1.629657471964105,
-        "threshold_voltage_v": 2.0922641543044005,
+        "onset_voltage_v": 0.9246964080312037,
+        "threshold_voltage_v": 2.1259980297783385,
         "hold_voltage_v": 0.7575999999999999
       },
       "W": {
         "switchable": true,
         "overlap_fraction": 0.0,
         "effective_built_in_potential_v": 0.218,
-        "onset_voltage_v": 1.2328572946994691,
-        "threshold_voltage_v": 1.6954631221486427,
+        "onset_voltage_v": 0.8196292189547455,
+        "threshold_voltage_v": 1.8281002045118668,
         "hold_voltage_v": 0.6424000000000001
       },
       "Pt": {
         "switchable": true,
         "overlap_fraction": 0.0,
         "effective_built_in_potential_v": 0.145,
-        "onset_voltage_v": 0.7802582893876114,
-        "threshold_voltage_v": 1.2428635385764488,
+        "onset_voltage_v": 0.745666822491055,
+        "threshold_voltage_v": 1.517703806840959,
         "hold_voltage_v": 0.511
       }
     },
@@ -98,24 +103,24 @@
         "switchable": true,
         "overlap_fraction": 0.13194444444444442,
         "effective_built_in_potential_v": 0.24479166666666666,
-        "onset_voltage_v": 1.0832761377675335,
-        "threshold_voltage_v": 1.3694062982142572,
+        "onset_voltage_v": 0.5620989394624658,
+        "threshold_voltage_v": 1.632059587830794,
         "hold_voltage_v": 0.690625
       },
       "W": {
         "switchable": true,
         "overlap_fraction": 0.11347517730496448,
         "effective_built_in_potential_v": 0.19326241134751773,
-        "onset_voltage_v": 0.7637928243134312,
-        "threshold_voltage_v": 1.0499283778744972,
+        "onset_voltage_v": 0.4919762230211853,
+        "threshold_voltage_v": 1.410110122406469,
         "hold_voltage_v": 0.597872340425532
       },
       "Pt": {
         "switchable": true,
         "overlap_fraction": 0.0,
         "effective_built_in_potential_v": 0.145,
-        "onset_voltage_v": 0.46457190961900174,
-        "threshold_voltage_v": 0.7506974874386363,
+        "onset_voltage_v": 0.444223201067629,
+        "threshold_voltage_v": 1.1966619360212776,
         "hold_voltage_v": 0.511
       }
     },
@@ -124,16 +129,16 @@
         "switchable": true,
         "overlap_fraction": 0.5659722222222222,
         "effective_built_in_potential_v": 0.12239583333333333,
-        "onset_voltage_v": 0.2022302002339165,
-        "threshold_voltage_v": 0.38414845266981895,
+        "onset_voltage_v": 0.2612310675701308,
+        "threshold_voltage_v": 0.8618923909529195,
         "hold_voltage_v": 0.4703125
       },
       "W": {
         "switchable": true,
         "overlap_fraction": 0.5567375886524822,
         "effective_built_in_potential_v": 0.09663120567375887,
-        "onset_voltage_v": 0.2022302002339165,
-        "threshold_voltage_v": 0.38414845266981895,
+        "onset_voltage_v": 0.2490655686527352,
+        "threshold_voltage_v": 0.8048475416591483,
         "hold_voltage_v": 0.423936170212766
       },
       "Pt": {

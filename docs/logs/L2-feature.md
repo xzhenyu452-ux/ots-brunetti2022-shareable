@@ -5,6 +5,13 @@ Last updated: 2026-09-09 22:00
 Use this file for L2-class changes only.
 
 
+## 2026-09-29 - completed - Self-consistent subthreshold contact transport
+
+- Replaced the empirical impact-onset shift with common Schottky injection, forward-contact, and image-force-lowered reverse-contact equations.
+- Solved contact and bulk voltage drops from current continuity for every source-voltage point.
+- Added regression checks for electrode-dependent subthreshold current and voltage-partition closure.
+
+
 ## 2026-09-29 - completed - Hatayama 2025 contact-aware model
 
 - Added an independent nested Python package for the Schottky-interface interpretation of GeTe6 OTS devices.

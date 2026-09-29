@@ -83,7 +83,7 @@ def main() -> None:
     axes[1].axhline(baseline.onset_multiplication, color="0.5", linestyle=":")
     axes[1].axhline(baseline.threshold_multiplication, color="0.2", linestyle="--")
     axes[1].legend()
-    axes[2].set(title="Interpretive voltage partition", xlabel="Source voltage (V)", ylabel="Voltage (V)")
+    axes[2].set(title="Self-consistent voltage partition", xlabel="Source voltage (V)", ylabel="Voltage (V)")
     axes[2].legend(fontsize=8, ncol=2)
     for axis in axes:
         axis.grid(alpha=0.25)
@@ -160,6 +160,9 @@ def main() -> None:
                 "threshold_voltage_v": _serializable(result.threshold_voltage_v),
                 "hold_voltage_v": _serializable(result.hold_voltage_v),
                 "effective_built_in_potential_v": result.effective_built_in_potential_v,
+                "contact_saturation_current_a": HatayamaContactModel(
+                    CONTACTS[name], baseline
+                ).contact_saturation_current_a,
                 "switchable": result.switchable,
             }
             for name, result in results.items()

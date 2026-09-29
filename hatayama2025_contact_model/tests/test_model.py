@@ -43,3 +43,21 @@ def test_current_is_finite_and_compliance_limited() -> None:
     assert np.all(np.isfinite(result.terminal_current_a))
     assert np.all(result.terminal_current_a >= 0.0)
     assert result.terminal_current_a.max() <= ModelParameters().compliance_current_a
+
+
+def test_contacts_separate_the_whole_measurable_subthreshold_region() -> None:
+    currents = {
+        name: HatayamaContactModel(contact).sweep().multiplied_current_a
+        for name, contact in CONTACTS.items()
+    }
+    sample_index = 400  # 1.0 V for the default 0-3 V, 1201-point sweep.
+    assert currents["Pt"][sample_index] > currents["W"][sample_index] > currents["Hf"][sample_index]
+
+
+def test_self_consistent_voltage_partition_closes() -> None:
+    result = HatayamaContactModel(CONTACTS["W"]).sweep()
+    assert np.allclose(
+        result.source_voltage_v,
+        result.bulk_voltage_v + result.physical_contact_drop_v,
+        atol=2e-4,
+    )
