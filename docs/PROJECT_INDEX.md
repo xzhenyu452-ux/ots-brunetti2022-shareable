@@ -1,6 +1,6 @@
 # PROJECT_INDEX
 
-Last updated: 2026-09-09 22:00
+Last updated: 2026-09-29
 
 ## Quick Links
 
@@ -23,6 +23,15 @@ ots-brunetti2022-shareable/
 |  |- change_log.md
 |  |- PROJECT_INDEX.md
 |- outputs/
+|- hatayama2025_contact_model/
+|  |- outputs/
+|  |- scripts/
+|  |- src/hatayama_contact/
+|  |- tests/
+|  |- MODEL.md
+|  |- README.md
+|  |- pyproject.toml
+|  |- requirements.txt
 |- scripts/
 |- src/
 |- tests/
@@ -37,8 +46,11 @@ ots-brunetti2022-shareable/
 
 ## Key Entrypoints
 
-- Add the main scripts, apps, or commands here.
+- `scripts/reproduce_brunetti2022.py`: Brunetti dynamic reproduction.
+- `hatayama2025_contact_model/scripts/reproduce_contact_model.py`: Hatayama contact-aware quasi-static reproduction.
 
 ## Ownership Notes
 
-- Describe which folders are source, generated outputs, logs, tests, or external assets.
+- `src/`, `scripts/`, `tests/`, and `outputs/` at the repository root belong to the Brunetti reproduction.
+- `hatayama2025_contact_model/` is a standalone nested package with its own source, tests, documentation, and generated outputs.
+- `references/papers/` contains local-only publisher PDFs and is ignored by Git.

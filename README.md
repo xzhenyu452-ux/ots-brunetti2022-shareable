@@ -2,6 +2,8 @@
 
 这是一个独立、可复制的 Python 仿真包，用于复现基于 Brunetti 等人 2022 双能级电子模型的准静态/瞬态 OTS 基础现象。
 
+仓库还包含独立的 [Hatayama 2025 肖特基接触模型](hatayama2025_contact_model/README.md)，用于复现电极功函数、界面带弯曲、Poole-Frenkel 输运、冲击电离和耗尽层重叠对阈值的影响。
+
 ## 快速开始
 
 ```powershell
