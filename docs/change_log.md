@@ -5,6 +5,14 @@ Last updated: 2026-09-30
 Append new entries at the top or bottom, but keep the format consistent.
 
 
+## 2026-09-30 - completed - Add Pt/GeSe/Pt OTS scalability reference
+
+- Summary: Archived Ahn et al. 2013 locally and documented its area and thickness scaling results, contact-voltage interpretation, and limits of the critical-power argument.
+- Level: L3
+- Files changed: `references/README.md`, `docs/change_log.md`, `docs/logs/L3-maintenance.md`
+- Validation: archive SHA-256 matches the supplied PDF; bibliographic data, equations, device dimensions, and plotted trends checked against the article.
+
+
 ## 2026-09-30 - completed - Add GeSe thickness and area scaling reference
 
 - Summary: Archived Zhao et al. 2024 locally and added a reference note covering thickness, electrode-size, leakage, threshold-field, and variability trends.

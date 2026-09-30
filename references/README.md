@@ -1,5 +1,62 @@
 # Reference papers
 
+## Ahn et al. 2013
+
+H.-W. Ahn, D. S. Jeong, B.-k. Cheong, S.-d. Kim, S.-Y. Shin,
+H. Lim, D. Kim, and S. Lee, "A Study on the Scalability of a Selector
+Device Using Threshold Switching in Pt/GeSe/Pt," *ECS Solid State Letters*
+2, N31-N33 (2013).
+
+- DOI: https://doi.org/10.1149/2.011309ssl
+- Local file: `papers/Ahn_et_al_2013_Pt_GeSe_Pt_OTS_Scalability.pdf`
+- The local publisher PDF is intentionally ignored by Git and is not
+  redistributed in the public repository.
+
+### Reported scaling observations
+
+- The crossbar devices use Pt/GeSe/Pt stacks. For the area study, the GeSe
+  thickness is 100 nm and the overlap area ranges from 2 x 2 to 50 x 50
+  um2. The measured film composition is Ge:Se = 62:38 at.%.
+- Subthreshold current is described by a Poole-Frenkel-like relation,
+  `I = I0 exp(sqrt(alpha V))`, and OFF resistance scales approximately as
+  inverse area.
+- ON resistance scales approximately as inverse line width rather than inverse
+  area. Control structures without GeSe show that the measured ON resistance
+  is dominated by the Pt electrode resistance in this geometry.
+- As area decreases, the reported threshold voltage, holding voltage, and
+  holding-current density increase. The maximum-current-density projection is
+  a lower-bound extrapolation because the pulse generator, rather than
+  irreversible device damage, limits the measured current.
+- At fixed 5 x 5 um2 area, threshold voltage decreases from 100 to 40 nm and
+  then saturates or slightly rises at 20 nm. For thickness above 40 nm, the
+  authors fit `V_th proportional to sqrt(t)` and interpret it with a constant
+  critical total power, `P_th = V_th^2/R proportional to V_th^2/t`.
+- The thin-film saturation is attributed to an approximately
+  thickness-independent contact/interface voltage, such as a Schottky
+  barrier. The authors therefore propose combining a thin switching film with
+  electrode engineering.
+
+### Mechanistic interpretation and limitations
+
+- A useful compact decomposition is `V_th = V_contact + V_bulk(t)`. The paper
+  motivates a contact-controlled floor at small thickness and a bulk term at
+  larger thickness.
+- The observed square-root thickness law is not unique proof of thermal
+  runaway. It assumes resistance proportional to thickness and a constant
+  *total* critical power. A constant critical power density would instead
+  give `V_th proportional to t` under the same uniform-current assumptions.
+- Only the thicker-film points support the square-root fit, while interface
+  voltage, current localization, and nonuniform heating can produce similar
+  apparent exponents over a limited range.
+- Area scaling is not purely intrinsic in these structures: ON resistance is
+  electrode-limited, the switching pulse contains capacitive overshoot, and
+  the active conduction area need not equal the lithographic overlap area.
+- The increase of threshold voltage at smaller area is compatible with a
+  weakest-link or first-fire picture, in which larger devices have more
+  chances to contain a low-barrier switching path. An ideal uniform
+  critical-field model would instead predict nearly area-independent
+  threshold voltage.
+
 ## Clima et al. 2023
 
 S. Clima, T. Ravsher, D. Garbin, R. Degraeve, A. Fantini, R. Delhougne,
