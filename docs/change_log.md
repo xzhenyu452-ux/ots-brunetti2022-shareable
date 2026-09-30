@@ -1,8 +1,16 @@
 # Change Log
 
-Last updated: 2026-09-09 22:00
+Last updated: 2026-09-30
 
 Append new entries at the top or bottom, but keep the format consistent.
+
+
+## 2026-09-30 - completed - Add GeSe thickness and area scaling reference
+
+- Summary: Archived Zhao et al. 2024 locally and added a reference note covering thickness, electrode-size, leakage, threshold-field, and variability trends.
+- Level: L3
+- Files changed: `references/README.md`, `docs/change_log.md`, `docs/logs/L3-maintenance.md`
+- Validation: publisher PDF hash matches the supplied source; key figures 2-8 visually inspected.
 
 
 ## 2026-09-29 - completed - Make contact and bulk transport self-consistent

@@ -115,3 +115,47 @@ ionization energy `E_i`, depends strongly on electrode work function.
   phenomenological Poole-Frenkel and lucky-drift impact-ionization equations.
 - GeTe6 is used as a chemically clean model system and is not presented as a
   back-end-compatible production OTS material.
+
+## Zhao et al. 2024
+
+J. Zhao, Z. Zhao, Z. Song, and M. Zhu, "GeSe ovonic threshold switch: the
+impact of functional layer thickness and device size," *Scientific Reports*
+14, 6685 (2024).
+
+- DOI: https://doi.org/10.1038/s41598-024-57029-7
+- Local file: `papers/Zhao_et_al_2024_GeSe_OTS_Thickness_Device_Size.pdf`
+- License stated in the article: CC BY 4.0.
+- The local PDF is intentionally ignored by Git.
+
+### Scaling observations
+
+- For 44, 29, and 15 nm GeSe films on 200 nm TiN electrodes, threshold
+  voltage decreases approximately linearly with thickness while the extracted
+  threshold field remains near 105 V/um. Holding voltage changes much less.
+- Leakage measured at one-half of each device's own threshold voltage remains
+  around tens of nA without a monotonic thickness dependence. Because the
+  sampling voltage scales with threshold voltage, this is approximately a
+  comparison at fixed normalized field rather than at fixed terminal voltage.
+- Reducing TiN electrode diameter from 200 to 60 nm has little systematic
+  effect on threshold voltage, holding voltage, threshold field, or 7-10 ns
+  switching speed. The 60 nm devices show noticeably wider threshold-voltage
+  scatter.
+- Absolute leakage decreases from 56.5 to 23.5 nA as diameter shrinks from
+  200 to 60 nm. This is much weaker than ideal area scaling: area falls by
+  about 11.1 times while current falls by only about 2.4 times, so leakage
+  current density increases by about 4.6 times.
+
+### Interpretation and limitations
+
+- The thickness result supports a bulk critical-field picture,
+  `V_th approximately E_th t + V_offset`, over the measured range. A nonzero
+  contact/access-voltage offset is still compatible with the data.
+- Area-independent threshold voltage is expected for a local field criterion;
+  area should primarily affect total current and statistical variability.
+- Sub-area scaling of leakage suggests that current is not simply uniform over
+  the lithographic electrode area. Edge/perimeter conduction, current
+  crowding, a fixed parasitic floor, or a smaller effective active area remain
+  plausible explanations and are not separated by this paper.
+- The study demonstrates correlations and scaling trends but does not solve a
+  contact-aware Poisson/transport model or independently extract interface
+  barrier parameters.
