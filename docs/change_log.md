@@ -5,6 +5,14 @@ Last updated: 2026-09-30
 Append new entries at the top or bottom, but keep the format consistent.
 
 
+## 2026-09-30 - completed - Add Fermi-level-unpinning reference and de-duplicate Hatayama download
+
+- Summary: Archived Park et al. 2026 locally, documented the TiO2 interlayer tradeoff between Fermi-level unpinning and tunneling resistance, and linked a duplicate Hatayama 2025 download to the existing canonical record.
+- Level: L3
+- Files changed: `references/README.md`, `docs/change_log.md`, `docs/logs/L3-maintenance.md`
+- Validation: all 18 pages across the two supplied PDFs were visually inspected; the Park archive hash matches the supplied source; Hatayama title, DOI, page count, figures, and body were matched before de-duplication.
+
+
 ## 2026-09-30 - completed - Add GeSe electrode-interface reference
 
 - Summary: Archived Seo et al. 2017 locally and documented its Mo/Al/W/TiN threshold-voltage comparison, interface-trap extraction, hopping interpretation, and modeling limitations.

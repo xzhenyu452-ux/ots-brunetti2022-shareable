@@ -4,6 +4,17 @@ Last updated: 2026-09-30
 
 Use this file for L3-class changes only.
 
+## 2026-09-30 - completed - Fermi-level unpinning and duplicate archive check
+
+- Preserved Park et al. 2026, *Journal of Alloys and Compounds* 1077,
+  189487, as a local-only reference PDF.
+- Added the direct-contact pinning result, TiO2 interlayer thickness trends,
+  hopping/activation interpretation, leakage tradeoff, and model limitations.
+- Confirmed that the newly supplied Hatayama 2025 file is a second download
+  of the already archived article; retained one canonical copy and recorded
+  the de-duplication instead of creating a duplicate library item.
+- Visually checked all pages and verified the Park PDF source/archive SHA-256.
+
 ## 2026-09-30 - completed - GeSe electrode-interface reference
 
 - Preserved Seo et al. 2017, *Journal of Alloys and Compounds* 691, 880-883,

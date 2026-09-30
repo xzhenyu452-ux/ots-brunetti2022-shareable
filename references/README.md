@@ -107,6 +107,75 @@ electrode on the characteristics of the Ovonic Threshold Switch (OTS),"
   should therefore be used as a calibration target rather than inserted
   directly as a unique predictive parameter.
 
+## Park et al. 2026
+
+E. Park, S.-H. Kim, S.-J. Min, J.-H. Kim, S.-H. Lee, and H.-Y. Yu,
+"Unlocking stoichiometry-free threshold voltage control in GeSe-based
+ovonic threshold switch by Fermi-Level unpinning," *Journal of Alloys and
+Compounds* 1077, 189487 (2026).
+
+- DOI: https://doi.org/10.1016/j.jallcom.2026.189487
+- Local file: `papers/Park_et_al_2026_GeSe_Fermi_Level_Unpinning_OTS.pdf`
+- The local publisher PDF is intentionally ignored by Git and is not
+  redistributed in the public repository.
+
+### Device and central result
+
+- The baseline metal-direct-contact devices use a 30 nm amorphous GeSe layer,
+  a Pt bottom electrode, and Ta, TiN, or Pt top electrodes in 10 x 10 um2
+  cross-points. The nominal/measured top-electrode work functions span about
+  4.25 eV (Ta), 4.74 eV (TiN), and 5.55 eV (Pt).
+- Despite the greater-than-1.3 eV work-function range, direct-contact devices
+  cluster at approximately 5.1-5.7 V threshold voltage. The authors attribute
+  this insensitivity to metal-induced gap states pinning the interface Fermi
+  level near the GeSe charge-neutrality level.
+- The metal-interlayer-contact structure inserts 0.5, 1.0, or 2.0 nm TiO2
+  between GeSe and the top electrode. The dielectric attenuates metal wave
+  functions and suppresses metal-induced gap states, but also introduces an
+  exponentially thickness-dependent tunneling resistance.
+- For Ta and Pt, an optimum 0.5-1.0 nm interlayer lowers threshold voltage;
+  thicker TiO2 makes tunneling resistance dominant and threshold voltage
+  rebounds. For TiN, whose work function is already close to the pinned GeSe
+  charge-neutrality level, the interlayer provides little barrier benefit and
+  threshold voltage rises monotonically with thickness.
+
+### Transport interpretation and modeling value
+
+- Deep-subthreshold data follow `ln(I) proportional to V`, which the authors
+  identify with trap-to-trap hopping rather than the Poole-Frenkel relation
+  `ln(I/V) proportional to sqrt(V)`.
+- The subthreshold current maximum coincides with the threshold-voltage
+  minimum. The proposed chain is `Fermi-level unpinning -> lower interfacial
+  injection activation energy -> faster mid-gap-state population -> lower
+  V_th`.
+- Temperature-dependent resistance retains an Arrhenius form with nearly
+  parallel slopes for different interlayer thicknesses. This is used to argue
+  that the interlayer changes injection resistance while preserving the bulk
+  GeSe hopping mechanism.
+- The model implication is a contact element containing both an
+  electrode-dependent injection barrier and a thickness-dependent tunneling
+  resistance, solved in series with the bulk hopping current. It naturally
+  predicts an optimum interlayer thickness rather than monotonic improvement.
+- The reported threshold-voltage reduction is accompanied by increased
+  subthreshold current at the optimum point, so contact engineering trades
+  lower operating voltage against leakage instead of tuning threshold without
+  consequence.
+
+### Limitations
+
+- Work functions are measured on bare metal films, while Fermi-level
+  unpinning and band alignment in the completed junction are inferred rather
+  than directly measured by a buried-interface spectroscopy method.
+- Similar hopping slopes and Arrhenius behavior support preservation of the
+  transport class, but do not prove that the bulk trap distribution is
+  completely unchanged.
+- The ON current is fixed by a 0.1 A compliance limit. The study therefore
+  does not independently determine intrinsic ON-state conductance, and it
+  provides little information on separate holding-voltage control.
+- Endurance up to 1e8 cycles is reported for the optimized Ta/interlayer
+  structure, but long-term chemical stability of the subnanometer interface
+  remains a separate reliability question.
+
 ## Clima et al. 2023
 
 S. Clima, T. Ravsher, D. Garbin, R. Degraeve, A. Fantini, R. Delhougne,
@@ -158,6 +227,10 @@ in Ovonic Threshold Switching," *ACS Applied Electronic Materials* 7,
 
 - DOI: https://doi.org/10.1021/acsaelm.5c00292
 - Local file: `papers/Hatayama_et_al_2025_Schottky_Interface_Threshold_Voltage_OTS.pdf`
+- A second supplied download, `el5c00292 (1).pdf`, was checked on
+  2026-09-30. It is the same ten-page article and DOI; only the ACS download
+  watermark/metadata differs, so it was de-duplicated against this canonical
+  local copy rather than stored as a second paper.
 - License stated in the article: CC BY-NC-ND 4.0.
 - The local publisher PDF is intentionally ignored by Git and is not redistributed in the public repository.
 
