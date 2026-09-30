@@ -57,6 +57,56 @@ Device Using Threshold Switching in Pt/GeSe/Pt," *ECS Solid State Letters*
   critical-field model would instead predict nearly area-independent
   threshold voltage.
 
+## Seo et al. 2017
+
+J. Seo, S. W. Cho, H.-W. Ahn, B.-k. Cheong, and S. Lee, "A study on the
+interface between an amorphous chalcogenide and the electrode: Effect of the
+electrode on the characteristics of the Ovonic Threshold Switch (OTS),"
+*Journal of Alloys and Compounds* 691, 880-883 (2017).
+
+- DOI: https://doi.org/10.1016/j.jallcom.2016.08.237
+- Local file: `papers/Seo_et_al_2017_GeSe_OTS_Electrode_Interface.pdf`
+- The local publisher PDF is intentionally ignored by Git and is not
+  redistributed in the public repository.
+
+### Electrode dependence and measurements
+
+- The devices are 5 x 5 um2 metal/amorphous-Ge60Se40/metal cross-points with
+  Mo, Al, W, or TiN top electrodes. Threshold voltage increases in the order
+  Mo (1.74 V), Al (3.11 V), W (4.97 V), and TiN (5.85 V).
+- The switching curves are measured with 20 us triangular pulses to reduce
+  irreversible heating and stress. Low-field temperature-dependent DC data
+  are used for an apparent thermionic-emission barrier analysis.
+- The extracted apparent Schottky barrier is temperature-dependent, and
+  threshold voltage has little correlation with independently measured metal
+  work function. The authors therefore reject a simple ideal-Schottky-barrier
+  explanation for this material stack.
+- AC conductance peaks give interface-trap densities of approximately
+  3.17e16-3.58e16 eV^-1 cm^-2. The higher interface-trap-density electrodes
+  generally have lower threshold voltage.
+- An independent nearest-neighbor-hopping fit uses
+  `R proportional to exp(T0/T)` with
+  `T0 = 1/[D_NNH(E) a^2 k]`. The extracted localized-state density follows
+  the same electrode ordering and supports trap-assisted interfacial hopping.
+
+### Proposed mechanism and modeling value
+
+- The proposed causal chain is `electrode chemistry -> interfacial bonding
+  rearrangement -> interface-trap density and spacing -> hopping barrier ->
+  V_th`. A larger trap density reduces the average hopping distance and the
+  field-assisted transport barrier, producing a lower threshold voltage.
+- The chemical-reaction step is a hypothesis based on Pauling bond-energy
+  estimates. The paper does not directly identify the interfacial bonds or
+  measure their spatial trap distribution.
+- This result refines Ahn et al. 2013: the thin-film contact voltage should not
+  automatically be represented by an ideal work-function-controlled Schottky
+  barrier. A contact model may instead require an interface-state density,
+  localization length, and interface activation/hopping energy.
+- The paper establishes correlations and extraction procedures, not a closed
+  self-consistent contact/bulk OTS model. The reported interface-state density
+  should therefore be used as a calibration target rather than inserted
+  directly as a unique predictive parameter.
+
 ## Clima et al. 2023
 
 S. Clima, T. Ravsher, D. Garbin, R. Degraeve, A. Fantini, R. Delhougne,

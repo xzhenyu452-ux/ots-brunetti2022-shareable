@@ -5,6 +5,14 @@ Last updated: 2026-09-30
 Append new entries at the top or bottom, but keep the format consistent.
 
 
+## 2026-09-30 - completed - Add GeSe electrode-interface reference
+
+- Summary: Archived Seo et al. 2017 locally and documented its Mo/Al/W/TiN threshold-voltage comparison, interface-trap extraction, hopping interpretation, and modeling limitations.
+- Level: L3
+- Files changed: `references/README.md`, `docs/change_log.md`, `docs/logs/L3-maintenance.md`
+- Validation: archive SHA-256 matches the supplied four-page PDF; all pages and figures were visually inspected.
+
+
 ## 2026-09-30 - completed - Add Pt/GeSe/Pt OTS scalability reference
 
 - Summary: Archived Ahn et al. 2013 locally and documented its area and thickness scaling results, contact-voltage interpretation, and limits of the critical-power argument.
